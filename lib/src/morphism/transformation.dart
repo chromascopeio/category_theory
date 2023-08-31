@@ -1,5 +1,7 @@
 part of 'morphism.dart';
 
+/// A [Transformation] is used to hold mappings between objects of a morphism.
+/// Two Transformations are equivalent iff their source and targets are the same.
 class Transformation<A, B> {
   final A source;
   final B target;
