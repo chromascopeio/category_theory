@@ -17,7 +17,6 @@ void main() {
 
   // Check equality between morphisms
   Morphism<int, String> f2 = Morphism(Transformation(42, "forty-two"));
-
   print('f = f2 is ${f == f2}'); // Output: true
   print('f = g is ${f == g}'); // Output: false
 }
