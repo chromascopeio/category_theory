@@ -21,32 +21,6 @@ class Category<O extends Object, M extends Morphism> {
   Morphism identityMorphism(Object object) =>
       Morphism(Transformation(object, object));
 
-  List<M> morphismsOf(Object obj) {
-    if (objects.contains(obj)) {
-      return morphisms
-          .where((morphism) => morphism.source == obj || morphism.target == obj)
-          .toList();
-    } else {
-      throw ArgumentError("Object not found in the category.");
-    }
-  }
-
-  List<M> morphismsFrom(Object obj) {
-    if (objects.contains(obj)) {
-      return morphisms.where((morphism) => morphism.source == obj).toList();
-    } else {
-      throw ArgumentError("Object not found in the category.");
-    }
-  }
-
-  List<M> morphismsTo(Object obj) {
-    if (objects.contains(obj)) {
-      return morphisms.where((morphism) => morphism.target == obj).toList();
-    } else {
-      throw ArgumentError("Object not found in the category.");
-    }
-  }
-
   Morphism<A, C> compose<A, B, C>(Morphism<A, B> f, Morphism<B, C> g) {
     if (f.target == g.source) {
       return Morphism(Transformation(f.source, g.target));
