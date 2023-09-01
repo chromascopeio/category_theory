@@ -3,8 +3,6 @@ import 'package:category_theory/category_theory.dart';
 void main() {
   // Define a category.
   final category = Category<int, Morphism<int, int>>(
-    name: 'Z/7Z-ish',
-    description: 'Cyclic poset of integers 1..7.',
     objects: [1, 2, 3, 4, 5, 6, 7],
     morphisms: [
       Morphism<int, int>(Transformation(1, 2)),
@@ -23,12 +21,6 @@ void main() {
       Morphism<int, int>(Transformation(2, 1)),
     ],
   );
-
-  // Get the name of the category
-  print('Name: ${category.name}');
-
-  // Get the description of the category
-  print('Description: ${category.description}');
 
   // Get objects in the category
   print('Objects: ${category.objects}');
