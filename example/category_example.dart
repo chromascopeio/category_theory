@@ -2,23 +2,15 @@ import 'package:category_theory/category_theory.dart';
 
 void main() {
   // Define a category.
-  final category = Category<int, Morphism<int, int>>(
-    objects: [1, 2, 3, 4, 5, 6, 7],
+  final category = Category<String, Morphism<String, String>>(
+    objects: ['A', 'B', 'C', 'D'],
     morphisms: [
-      Morphism<int, int>(Transformation(1, 2)),
-      Morphism<int, int>(Transformation(2, 3)),
-      Morphism<int, int>(Transformation(3, 4)),
-      Morphism<int, int>(Transformation(4, 5)),
-      Morphism<int, int>(Transformation(5, 6)),
-      Morphism<int, int>(Transformation(6, 7)),
-      Morphism<int, int>(Transformation(7, 1)),
-      Morphism<int, int>(Transformation(1, 7)),
-      Morphism<int, int>(Transformation(7, 6)),
-      Morphism<int, int>(Transformation(6, 5)),
-      Morphism<int, int>(Transformation(5, 4)),
-      Morphism<int, int>(Transformation(4, 3)),
-      Morphism<int, int>(Transformation(3, 2)),
-      Morphism<int, int>(Transformation(2, 1)),
+      Morphism<String, String>(Transformation('A', 'B')),
+      Morphism<String, String>(Transformation('B', 'C')),
+      Morphism<String, String>(Transformation('C', 'D')),
+      Morphism<String, String>(Transformation('D', 'C')),
+      Morphism<String, String>(Transformation('C', 'B')),
+      Morphism<String, String>(Transformation('B', 'A')),
     ],
   );
 
@@ -29,23 +21,23 @@ void main() {
   print('Morphisms: ${category.morphisms}');
 
   // Composition of morphisms
-  Morphism f = category.morphisms[0]; // 1 → 2
-  Morphism g = category.morphisms[1]; // 2 → 3
-  Morphism h = category.morphisms[2]; // 3 → 4
+  Morphism f = category.morphisms[0]; // 'A' → 'B'
+  Morphism g = category.morphisms[1]; // 'B' → 'C'
+  Morphism h = category.morphisms[2]; // 'C' → 'D'
 
-  var gComposeF = category.compose(f, g); // 1 → 3
-  var hComposeG = category.compose(g, h); // 2 → 4
+  var gComposeF = category.compose(f, g); // 'A' → 'C'
+  var hComposeG = category.compose(g, h); // 'B' → 'D'
 
-  // Axiom 1: Associativity of Composition
-  var hComposeGf = category.compose(gComposeF, h); // 1 → 4
-  var hgComposeF = category.compose(f, hComposeG); // 1 → 4
+  // Axiom 'A': Associativity of Composition
+  var hComposeGf = category.compose(gComposeF, h); // 'A' → 'D'
+  var hgComposeF = category.compose(f, hComposeG); // 'A' → 'D'
   print(
     'For any composable triple of morphisms f, g, h, we have h ◦ (g ◦ f) = (h ◦ g) ◦ f. ${hComposeGf == hgComposeF}',
   );
 
-  // Axiom 2: Identity
-  var idA = category.identityMorphism(1);
-  var idB = category.identityMorphism(2);
+  // Axiom 'B': Identity
+  var idA = category.identityMorphism('A');
+  var idB = category.identityMorphism('B');
   print(
     'For any morphism f : A → B, f ◦ idA = f and idB ◦ f = f. ${category.compose(idA, f) == f && category.compose(f, idB) == f}',
   );
@@ -60,7 +52,7 @@ void main() {
 
 // This example is a good preliminary illustration, but has some limitations -
 // such as the fact that it does not construct a generalized category but
-// rather one that specifically contains integers 1..7. Additionally, it does not
+// rather one that specifically contains integers 'A'..'G'. Additionally, it does not
 // verify that any object-specific axioms are adhered to.
 // Therefore, I propose an example should be written that illustrates the construction of the Poset category.
 // Morphism validation could be done via overridden Category methods, and type generics
