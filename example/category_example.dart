@@ -52,7 +52,7 @@ void main() {
 
 // This example is a good preliminary illustration, but has some limitations -
 // such as the fact that it does not construct a generalized category but
-// rather one that specifically contains integers 'A'..'G'. Additionally, it does not
+// rather one that specifically contains letters 'A'..'G'. Additionally, it does not
 // verify that any object-specific axioms are adhered to.
 // Therefore, I propose an example should be written that illustrates the construction of the Poset category.
 // Morphism validation could be done via overridden Category methods, and type generics
