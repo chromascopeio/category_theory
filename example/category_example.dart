@@ -36,10 +36,6 @@ void main() {
   // Get morphisms in the category
   print('Morphisms: ${category.morphisms}');
 
-  // Get morphisms from an object in the category
-  var morphismsFromOne = category.morphismsFrom(1);
-  print('Morphisms from 1: $morphismsFromOne');
-
   // Composition of morphisms
   Morphism f = category.morphisms[0]; // 1 → 2
   Morphism g = category.morphisms[1]; // 2 → 3
